@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/JegaVarsan/Reactjs-Simple-Project.git'
+                git branch: 'master', url: 'https://github.com/JegaVarsan/Reactjs-Simple-Project.git'
             }
         }
 
