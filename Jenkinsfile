@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/your-username/your-repo.git'
+                git branch: 'main', url: 'https://github.com/JegaVarsan/Reactjs-Simple-Project.git'
             }
         }
 
@@ -31,7 +31,7 @@ pipeline {
                     }
                     
                     // Run the new container
-                    sh "docker run -d --name my-react-app-container -p 80:3000 ${DOCKER_IMAGE}"
+                    sh "docker run -d --name my-react-app-container -p 3000:3000 ${DOCKER_IMAGE}"
                 }
             }
         }
