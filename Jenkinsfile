@@ -8,15 +8,14 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'master', url: 'https://github.com/JegaVarsan/Reactjs-Simple-Project.git'
+                git branch: 'main', url: 'https://github.com/your-username/your-repo.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build Docker image using Windows command
-                    bat "docker build -t ${DOCKER_IMAGE} ."
+                    docker.build(DOCKER_IMAGE)
                 }
             }
         }
@@ -25,14 +24,14 @@ pipeline {
             steps {
                 script {
                     // Stop and remove the previous container if it exists
-                    def containerId = bat(script: "docker ps -q --filter name=my-react-app-container", returnStdout: true).trim()
+                    def containerId = sh(script: "docker ps -q --filter name=my-react-app-container", returnStdout: true).trim()
                     if (containerId) {
-                        bat "docker stop ${containerId}"
-                        bat "docker rm ${containerId}"
+                        sh "docker stop ${containerId}"
+                        sh "docker rm ${containerId}"
                     }
                     
                     // Run the new container
-                    bat "docker run -d --name my-react-app-container -p 3000:3000 ${DOCKER_IMAGE}"
+                    sh "docker run -d --name my-react-app-container -p 80:3000 ${DOCKER_IMAGE}"
                 }
             }
         }
