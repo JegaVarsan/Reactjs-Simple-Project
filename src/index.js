@@ -1,3 +1,4 @@
+// Node and npm got installed in ec2 instance
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
